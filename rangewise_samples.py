@@ -1,2 +1,3 @@
 def infers_readings(readings):
-  pass
+  readings.sort()
+  return f'{readings[0]}-{readings[-1]},{len(readings)}'
