@@ -54,33 +54,37 @@ Start Test-driven approach
 
 # Test Specification
 ### 1. Create a simple range detection with a method:
-
-> infers_readings(readings)
-
+```
+infers_readings(readings)
+```
 The method can take up to two numbers, separated by commas, and will return their range.
-
-For example `""` or `3` or `4,5` as inputs.
-
+For example `""` or `"3"` or `"4,5"` as inputs.
 For an empty string it will return False.
 
 ### 2. Allow the infers_readings method to handle an unknown amount of numbers.
 
 ### 3. Allow the infers_readings method to handle unsorted readings:
-The following input is ok: `3, 3, 5, 4, 10, 11, 12` (will equal `3, 3, 4, 5, 10, 11, 12`)
+The following input is ok: `"3, 3, 5, 4, 10, 11, 12"` (will equal `"3, 3, 4, 5, 10, 11, 12"`)
 
 ### 4. Allow the infers_readings method to detect ranges in readings: To detect a range, 
 ##### 4.1. Find the differences of increasing values in list. Like `(3-3),(4-3), ..` If the difference is <=1, then it will be part of a range:
 (Also, insert a 0 in the front, just to account for the 1st element and make the obtained list’s length equal to original list) 
-> diff = [j-i for i, j in zip(readings[:-1], readings[1:])]
-> diff.insert(0, 0)
+```
+diff = [j-i for i, j in zip(readings[:-1], readings[1:])]
+diff.insert(0, 0)
+```
 
 ##### 4.2. Now get positions in above list where difference is >= 2. This is to detect the ranges:
 (Again, insert a 0 in the front, just to account for the 1st element, and make sure it gets picked in range detection)
-> ind = [i for i,v in enumerate(diff) if v >= 2]
-> ind.insert(0, 0)
+```
+ind = [i for i,v in enumerate(diff) if v >= 2]
+ind.insert(0, 0)
+```
 
 ##### 4.3. Group the elements together that will form ranges, using the ind list obtained:
-> groups = [readings[i:j] for i,j in zip(ind, ind[1:]+[None])]
+```
+groups = [readings[i:j] for i,j in zip(ind, ind[1:]+[None])]
+```
 
 ### 5. Support infers_readings method to convert the range in csv format:
 For example, `3-5, 4`
