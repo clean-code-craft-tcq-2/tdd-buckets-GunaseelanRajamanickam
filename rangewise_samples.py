@@ -22,7 +22,7 @@ def sortReadings(readings):
 def detectRange(readings):
   diff = differenceReading(readings)
   ind = getIndexRange(diff)
-  groups = createRange(ind)
+  groups = createRange(ind, readings)
   return groups
 
 def differenceReading(readings):
@@ -35,7 +35,7 @@ def getIndexRange(diff):
   ind.insert(0, 0)
   return ind
 
-def createRange(ind):
+def createRange(ind, readings):
   groups = [readings[i:j] for i,j in zip(ind, ind[1:]+[None])]
   return groups
 
