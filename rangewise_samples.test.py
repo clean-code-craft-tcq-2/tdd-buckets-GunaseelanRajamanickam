@@ -8,7 +8,7 @@ class RangewiseTest(unittest.TestCase):
     self.assertTrue(rangewise_samples.infers_readings([4,5]) == "4-5, 2")
     self.assertTrue(rangewise_samples.infers_readings([3, 3, 5, 4, 10, 11, 12]) == "10-12, 3")
     self.assertTrue(rangewise_samples.infers_readings([3]) == "3-3, 1")
-    self.assertTrue(rangewise_samples.infers_readings([3]) == False)
+    self.assertTrue(rangewise_samples.infers_readings([]) == False)
   
   def test_isSequenceOk(self):
     self.assertTrue(rangewise_samples.isSequenceOk([]) == False)
