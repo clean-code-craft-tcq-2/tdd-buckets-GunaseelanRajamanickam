@@ -1,10 +1,9 @@
-def infers_readings(readings):
+def infers_readings(readings, isSequenceOk, sortReadings, detectRange, convertCSVFormat, printOnConsole):
   validReadings = isSequenceOk(readings)
   if validReadings == True:
-    readings.sort()
     sortedReadings = []
     sortedReadings.append(sortReadings(readings))
-    groups = detectRange(readings)
+    groups = detectRange(readings, differenceReading, getIndexRange, createRange)
     for list in groups:
       formattedString = convertCSVFormat(list)
       printOnConsole(formattedString)
@@ -19,7 +18,7 @@ def isSequenceOk(readings):
 def sortReadings(readings):
   return readings.sort()
 
-def detectRange(readings):
+def detectRange(readings, differenceReading, getIndexRange, createRange):
   diff = differenceReading(readings)
   ind = getIndexRange(diff)
   groups = createRange(ind, readings)
@@ -44,3 +43,4 @@ def convertCSVFormat(list):
 
 def printOnConsole(string):
   print(string)
+  return True
