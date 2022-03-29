@@ -14,7 +14,7 @@ parameter = {
 def infers_readings(readings, sensorType, isSequenceOk, sortReadings, detectRange, convertCSVFormat, printOnConsole):
   validReadings = isSequenceOk(readings)
   if validReadings == True:
-    readings = convertReadings(readings)
+    readings = convertReadings(readings, sensorType)
     groups = detectRange(readings, differenceReading, getIndexRange, createRange)
     for list in groups:
       formattedString = convertCSVFormat(list)
@@ -27,7 +27,7 @@ def isSequenceOk(readings):
     return False
   return True
 
-def convertReadings(readings):
+def convertReadings(readings, sensorType):
   if sensorType is None:
     convertedReadings = sortReadings(readings)
   else:
