@@ -11,17 +11,11 @@ parameter = {
   }
 }
 
-def infers_readings(readings, sensorType,isSequenceOk, sortReadings, detectRange, convertCSVFormat, printOnConsole):
+def infers_readings(readings, sensorType, isSequenceOk, sortReadings, detectRange, convertCSVFormat, printOnConsole):
   validReadings = isSequenceOk(readings)
   if validReadings == True:
-    if sensorType is None:
-      convertedReadings = sortReadings(readings)
-    else:
-      convertedReadings = convertReadingsToPhysicalValue(readings,sensorType)
-      convertedReadings = roundOffToNearestInteger(convertedReadings)
-      convertedReadings = convertToAbsoluteReadings(convertedReadings)
-      convertedReadings = sortReadings(convertedReadings)
-    groups = detectRange(convertedReadings, differenceReading, getIndexRange, createRange)
+    readings = convertReadings(readings)
+    groups = detectRange(readings, differenceReading, getIndexRange, createRange)
     for list in groups:
       formattedString = convertCSVFormat(list)
       printOnConsole(formattedString)
@@ -32,6 +26,17 @@ def isSequenceOk(readings):
   if len(readings) <= 0:
     return False
   return True
+
+def convertReadings(readings):
+  if sensorType is None:
+    convertedReadings = sortReadings(readings)
+  else:
+    convertedReadings = convertReadingsToPhysicalValue(readings,sensorType)
+    convertedReadings = roundOffToNearestInteger(convertedReadings)
+    convertedReadings = convertToAbsoluteReadings(convertedReadings)
+    convertedReadings = sortReadings(convertedReadings)
+  return convertedReadings
+
 
 def sortReadings(readings):
   sortedReadings = sorted(readings)
