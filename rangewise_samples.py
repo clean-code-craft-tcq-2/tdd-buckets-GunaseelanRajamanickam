@@ -11,7 +11,7 @@ parameter = {
   }
 }
 
-def infers_readings(readings, sensorType, isSequenceOk, sortReadings, detectRange, convertCSVFormat, printOnConsole):
+def infers_readings(readings, sensorType, isSequenceOk, convertReadings, sortReadings, detectRange, convertCSVFormat, printOnConsole):
   validReadings = isSequenceOk(readings)
   if validReadings == True:
     readings = convertReadings(readings, sensorType)
