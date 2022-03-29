@@ -89,6 +89,21 @@ groups = [readings[i:j] for i,j in zip(ind, ind[1:]+[None])]
 ### 5. Support infers_readings method to convert the range in csv format:
 For example, `3-5, 4`
 
-### 6. Support infers_reading method to print the formatted string in console
+### 6. Support infers_readings method to print the formatted string in console
+
+### 7. Support infers_readings method to convert the readings based on sensorType like `12-bit-0-to-10` and `10-bit-neg-15-to-15` 
+```
+(reading * parameter[sensorType]['scalingfactor']) + parameter[sensorType]['offset']
+```
+
+### 7. Support infers_readings method to round off the floating point in the readings by importing `math` lib
+```
+math.floor(reading)
+```
+
+### 7. Support infers_readings method to get absolute value of readings using `abs` function 
+```
+abs(reading)
+```
 
 
